@@ -10,10 +10,14 @@
 #include <QWidget>
 #endif
 
+#ifndef DISABLE_ZOOM_BUTTONS
 QT_BEGIN_NAMESPACE
 class QToolButton;
-class PlotSettings;
 QT_END_NAMESPACE
+#endif // !DISABLE_ZOOM_BUTTONS
+
+
+class PlotSettings;
 
 class Plotter : public QWidget{
     Q_OBJECT

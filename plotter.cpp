@@ -16,6 +16,7 @@ Plotter::Plotter(QWidget *parent)
     setFocusPolicy(Qt::StrongFocus);
     rubberBandIsShown = false;
 
+#ifndef DISABLE_ZOOM_BUTTONS
     zoomInButton = new QToolButton(this);
     zoomInButton->setIcon(QIcon(":/images/zoomin.png"));
     zoomInButton->adjustSize();
@@ -25,6 +26,7 @@ Plotter::Plotter(QWidget *parent)
     zoomOutButton->setIcon(QIcon(":/images/zoomout.png"));
     zoomOutButton->adjustSize();
     connect(zoomOutButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
+#endif
 
     setPlotSettings(PlotSettings());
 }
