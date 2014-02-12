@@ -19,11 +19,11 @@ QT_END_NAMESPACE
 
 class PlotSettings;
 
-class Plotter : public QWidget{
+class GraphWidget : public QWidget{
     Q_OBJECT
 
 public:
-    Plotter(QWidget *parent = 0);
+    GraphWidget(QWidget *parent = 0);
 
     void setPlotSettings(const PlotSettings &settings);
     void setCurveData(int id, const QVector<QPointF> &data);
