@@ -1,5 +1,4 @@
-#ifndef PLOTTER_H
-#define PLOTTER_H
+#pragma once
 
 #ifndef NOP_PRECOMPILE
 //#include "Precompile.h"
@@ -16,16 +15,27 @@ class QToolButton;
 QT_END_NAMESPACE
 #endif // !DISABLE_ZOOM_BUTTONS
 
-
-class PlotSettings;
+class PlotSettingsIntXAxis;
 
 class GraphWidget : public QWidget{
     Q_OBJECT
 
 public:
     GraphWidget(QWidget *parent = 0);
+    void setPlotSettings(/*const PlotSettingsIntXAxis &settings*/);
 
-    void setPlotSettings(const PlotSettings &settings);
+private:
+#ifndef DISABLE_ZOOM_BUTTONS
+    QToolButton *zoomInButton;
+    QToolButton *zoomOutButton;
+#endif    
+    bool rubberBandIsShown;
+
+protected:
+    int curZoom;
+
+
+#if 0
     void setCurveData(int id, const QVector<QPointF> &data);
     void clearCurve(int id);
     QSize minimumSizeHint() const;
@@ -57,30 +67,30 @@ private:
     QMap<int, QVector<QPointF> > curveMap;
     QVector<PlotSettings> zoomStack;
     int curZoom;
-    bool rubberBandIsShown;
     QRect rubberBandRect;
     QPixmap pixmap;
+#endif //0
 };
 
-class PlotSettings
-{
+//#if 0
+class PlotSettingsIntXAxis{
 public:
-    PlotSettings();
+    PlotSettingsIntXAxis(){};
 
     void scroll(int dx, int dy);
     void adjust();
     double spanX() const { return maxX - minX; }
-    double spanY() const { return maxY - minY; }
+    //double spanY() const { return maxY - minY; }
 
-    double minX;
-    double maxX;
+    int minX;
+    int maxX;
     int numXTicks;
-    double minY;
-    double maxY;
+    //double minY;
+    //double maxY;
     int numYTicks;
 
 private:
-    static void adjustAxis(double &min, double &max, int &numTicks);
+    static void adjustAxisX(int &min, int &max, int &numTicks);
 };
 
-#endif
+//#endif //0
