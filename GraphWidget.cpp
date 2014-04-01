@@ -7,10 +7,8 @@
 
 #include "GraphWidget.h"
 
-GraphWidget::GraphWidget(QWidget *parent)
-    : QWidget(parent)
-{
-    setBackgroundRole(QPalette::Dark);
+GraphWidget::GraphWidget(QWidget *parent): QWidget(parent){
+    //setBackgroundRole(QPalette::Dark);
     setAutoFillBackground(true);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setFocusPolicy(Qt::StrongFocus);
@@ -28,19 +26,19 @@ GraphWidget::GraphWidget(QWidget *parent)
     connect(zoomOutButton, SIGNAL(clicked()), this, SLOT(zoomOut()));
 #endif
 
-    setPlotSettings(PlotSettings());
+    //setPlotSettings(PlotSettings());
 }
 
-void GraphWidget::setPlotSettings(const PlotSettings &settings)
-{
-    zoomStack.clear();
-    zoomStack.append(settings);
+void GraphWidget::setPlotSettings(/*const PlotSettingsIntXAxis &settings*/){
     curZoom = 0;
+#ifndef DISABLE_ZOOM_BUTTONS
     zoomInButton->hide();
     zoomOutButton->hide();
-    refreshPixmap();
+#endif    
+    //refreshPixmap();
 }
 
+#if 0
 void GraphWidget::zoomOut()
 {
     if (curZoom > 0) {
@@ -358,3 +356,4 @@ void PlotSettings::adjustAxis(double &min, double &max, int &numTicks)
     min = std::floor(min / step) * step;
     max = std::ceil(max / step) * step;
 }
+#endif
