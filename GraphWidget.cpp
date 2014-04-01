@@ -5,7 +5,7 @@
 //#include <cmath>
 //#endif
 
-#include "plotter.h"
+#include "GraphWidget.h"
 
 GraphWidget::GraphWidget(QWidget *parent)
     : QWidget(parent)

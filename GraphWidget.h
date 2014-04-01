@@ -1,6 +1,4 @@
-#ifndef PLOTTER_H
-#define PLOTTER_H
-
+#pragma once
 #ifndef NOP_PRECOMPILE
 //#include "Precompile.h"
 #else
@@ -82,5 +80,3 @@ public:
 private:
     static void adjustAxis(double &min, double &max, int &numTicks);
 };
-
-#endif
